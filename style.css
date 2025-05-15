@@ -113,6 +113,23 @@ body {
   justify-content: center;
 }
 
+.container-contact {
+  display: flex;
+  justify-content: space-between;
+}
+.side-left {
+  padding-left: 100px;
+}
+.contact-section i {
+  margin-right: 8px;
+  color: #c7a789; /* tom de cobre */
+}
+
+.contact-section .btn {
+  border-radius: 0;
+  letter-spacing: 1px;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
