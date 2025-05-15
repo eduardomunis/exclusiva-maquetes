@@ -8,7 +8,7 @@
 
 body {
   font-family: sans-serif;
-  background: #111;
+  background: #1c1c1c;
   color: #fff;
   line-height: 1.6;
 }
@@ -65,9 +65,52 @@ body {
   border-radius: 8px;
 }
 
+.section-resume {
+  text-align: center;
+}
+
+.title {
+  padding: 20px;
+}
+
+.resume-quem-somos {
+  background-color: #474350;
+  color: #ffffff;
+  padding: 40px;
+}
+
+.card-quem-somos {
+  border: 1px solid #f4f7f5;
+}
+
+.service-icon {
+  width: 64px;
+  height: 64px;
+  filter: brightness(0); /* deixa o ícone todo preto */
+  transition: transform 0.3s ease;
+}
+
+.service-icon:hover {
+  transform: scale(1.1);
+}
+.service-icon {
+  margin: 10px;
+}
 .section {
   padding: 60px 20px;
   text-align: center;
+}
+
+.container-service {
+  display: flex;
+  justify-content: center;
+  color: black;
+  background-color: #fff;
+}
+
+.title-service {
+  display: flex;
+  justify-content: center;
 }
 
 .grid {
