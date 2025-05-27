@@ -188,7 +188,6 @@ button:hover {
   background: #000;
   text-align: center;
   padding: 20px;
-  margin-top: 60px;
 }
 
 .card-custom {
@@ -256,4 +255,13 @@ button:hover {
 
 .img-galeria {
   max-width: 500px;
+}
+
+.container-img-pricipal {
+  background-image: url("dist/Fotos/3.JPG");
+  background-size: cover; /* ou "contain", dependendo do efeito */
+  background-position: center top; /* Aqui você escolhe a parte da imagem */
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 2000px;
 }
