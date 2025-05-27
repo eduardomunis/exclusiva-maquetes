@@ -44,10 +44,15 @@ body {
 .nav a {
   color: #f4f7f5;
   text-decoration: none;
+  border: 1px solid #f4f7f5;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 .nav a:hover {
-  color: #ffc857;
+  border: 1px solid #ffc857;
+  color: #1c1c1c;
+  background-color: #ffc857;
 }
 
 .hero {
@@ -118,7 +123,14 @@ body {
   justify-content: space-between;
 }
 .side-left {
-  padding-left: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.side-rigth h5 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 .contact-section i {
   margin-right: 8px;
@@ -232,4 +244,16 @@ button:hover {
 
 .whatsapp-float:hover {
   transform: scale(1.1);
+}
+
+.logo-img {
+  max-width: 200px;
+}
+.logo-img-footer {
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+.img-galeria {
+  max-width: 500px;
 }
