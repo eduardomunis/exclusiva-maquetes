@@ -70,10 +70,6 @@ body {
   border-radius: 8px;
 }
 
-.section-resume {
-  text-align: center;
-}
-
 .title {
   padding: 20px;
 }
@@ -216,7 +212,7 @@ button:hover {
 }
 
 .custom-btn:hover {
-  background: #e6b800;
+  background: #ffc857;
 }
 
 .contact-section {
@@ -264,4 +260,114 @@ button:hover {
   background-repeat: no-repeat;
   width: 100%;
   height: 2000px;
+}
+
+.section-maquete {
+  background-color: #474350; /* fundo suave e profissional */
+  padding: 60px 0;
+  color: #f4f7f5;
+}
+
+.section-maquete h2 {
+  font-size: 2.2rem;
+  color: #222;
+  margin-bottom: 30px;
+}
+
+.section-maquete p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.section-maquete ul {
+  padding-left: 1rem;
+  margin-bottom: 20px;
+}
+
+.section-maquete ul li {
+  margin-bottom: 15px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.section-maquete ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #ffc857; /* azul elegante para bullet */
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.section-maquete .fw-bold {
+  font-weight: 600;
+  color: #f4f7f5;
+}
+
+.card-quem-somos {
+  display: flex;
+  max-width: 800px; /* limita a largura */
+  width: 100%;
+  margin: 0 auto; /* garante centralização mesmo fora do flex */
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 20px;
+  height: 100%;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+.card-alinhado-esquerda {
+  text-align: left;
+}
+.card-alinhado-esquerda h4 {
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+#quem-somos .row.g-4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-quem-somos:hover {
+  transform: translateY(-5px);
+}
+
+.card-quem-somos h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.card-quem-somos p,
+.card-quem-somos li {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.card-quem-somos ul {
+  padding-left: 1rem;
+  margin: 0;
+}
+.card-quem-somos ul li::marker {
+  color: #ffc857;
+
+  font-size: 1.2rem;
+}
+.card-quem-somos p,
+.card-quem-somos ul {
+  max-width: 100%;
+  margin: 0 auto;
+}
+.container-portifolio {
 }
