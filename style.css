@@ -393,3 +393,40 @@ button:hover {
   max-width: 100%;
   margin: 0 auto;
 }
+
+/* Section da galeria */
+#galeria.section {
+  padding: 60px 0;
+}
+
+#galeria h3 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+/* Card da imagem */
+.card-custom {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ainda pode ter leve animação de sombra */
+.card-custom:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagem sem zoom, mas com cantos arredondados */
+.img-galeria {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  object-fit: cover;
+}
