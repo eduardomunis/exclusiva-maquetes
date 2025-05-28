@@ -1,5 +1,8 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
+/* =========================
+   RESET E CONFIGURAÇÕES GERAIS
+========================= */
 * {
   margin: 0;
   padding: 0;
@@ -13,14 +16,21 @@ body {
   line-height: 1.6;
 }
 
+/* =========================
+   CONTAINER GERAL
+========================= */
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
+/* =========================
+   CABEÇALHO E NAVEGAÇÃO
+========================= */
 .header {
   background: #1c1c1c;
   border-bottom: 1px solid #444;
@@ -39,6 +49,7 @@ body {
   margin-top: 10px;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .nav a {
@@ -55,6 +66,9 @@ body {
   background-color: #ffc857;
 }
 
+/* =========================
+   SEÇÃO HERO
+========================= */
 .hero {
   height: 70vh;
   background: url("https://via.placeholder.com/1200x500") center/cover no-repeat;
@@ -70,34 +84,89 @@ body {
   border-radius: 8px;
 }
 
+/* =========================
+   TÍTULOS
+========================= */
 .title {
-  padding: 20px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 40px;
 }
 
+/* =========================
+   QUEM SOMOS
+========================= */
 .resume-quem-somos {
   background-color: #474350;
   color: #f4f7f5;
   padding: 40px;
 }
 
+#quem-somos .row.g-4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .card-quem-somos {
+  display: flex;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto 20px auto;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
   border: 1px solid #f4f7f5;
 }
 
-.service-icon {
-  width: 64px;
-  height: 64px;
-  filter: brightness(0); /* deixa o ícone todo preto */
-  transition: transform 0.3s ease;
+.card-quem-somos:hover {
+  transform: translateY(-5px);
 }
 
-.service-icon:hover {
-  transform: scale(1.1);
+.card-quem-somos h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
-.service-icon {
-  filter: brightness(0) invert(1);
-  margin: 10px;
+
+.card-quem-somos p,
+.card-quem-somos li {
+  font-size: 1rem;
+  line-height: 1.6;
 }
+
+.card-quem-somos ul {
+  padding-left: 1rem;
+  margin: 0 auto;
+}
+
+.card-quem-somos ul li::marker {
+  color: #ffc857;
+  font-size: 1.2rem;
+}
+
+.card-quem-somos p,
+.card-quem-somos ul {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.card-alinhado-esquerda {
+  text-align: left;
+}
+
+.card-alinhado-esquerda h4 {
+  text-align: center;
+}
+
+/* =========================
+   SEÇÃO SERVIÇOS
+========================= */
 .section {
   padding: 60px 20px;
   text-align: center;
@@ -107,6 +176,7 @@ body {
   display: flex;
   justify-content: center;
   background-color: #474350;
+  flex-wrap: wrap;
 }
 
 .title-service {
@@ -114,10 +184,27 @@ body {
   justify-content: center;
 }
 
+.service-icon {
+  width: 64px;
+  height: 64px;
+  filter: brightness(0) invert(1);
+  margin: 10px;
+  transition: transform 0.3s ease;
+}
+
+.service-icon:hover {
+  transform: scale(1.1);
+}
+
+/* =========================
+   CONTATO
+========================= */
 .container-contact {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
+
 .side-left {
   display: flex;
   align-items: center;
@@ -128,9 +215,15 @@ body {
   text-align: center;
   margin-bottom: 20px;
 }
+
+.contact-section {
+  background-color: #474350;
+  color: #f4f7f5;
+}
+
 .contact-section i {
   margin-right: 8px;
-  color: #c7a789; /* tom de cobre */
+  color: #c7a789;
 }
 
 .contact-section .btn {
@@ -138,19 +231,9 @@ body {
   letter-spacing: 1px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
-}
-
-.card {
-  background: #222;
-  padding: 20px;
-  border-radius: 8px;
-}
-
+/* =========================
+   FORMULÁRIO
+========================= */
 form {
   max-width: 500px;
   margin: auto;
@@ -180,20 +263,6 @@ button:hover {
   background: #e6b800;
 }
 
-.footer {
-  background: #000;
-  text-align: center;
-  padding: 20px;
-}
-
-.card-custom {
-  background: #222;
-  padding: 20px;
-  border-radius: 8px;
-  color: #fff;
-  text-align: center;
-}
-
 .custom-input {
   background-color: #fff;
   color: #000;
@@ -215,53 +284,58 @@ button:hover {
   background: #ffc857;
 }
 
-.contact-section {
-  background-color: #474350;
-  color: #f4f7f5;
+/* =========================
+   GALERIA
+========================= */
+#galeria.section {
+  padding: 60px 20px;
 }
 
-.whatsapp-float {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  bottom: 200px;
-  right: 20px;
-  z-index: 999;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+#galeria h3 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 40px;
 }
 
-.whatsapp-float img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.card-custom {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.whatsapp-float:hover {
-  transform: scale(1.1);
-}
-
-.logo-img {
-  max-width: 200px;
-}
-.logo-img-footer {
-  max-width: 200px;
-  margin-bottom: 20px;
+.card-custom:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .img-galeria {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  object-fit: cover;
   max-width: 500px;
 }
 
+/* =========================
+   IMAGEM PRINCIPAL
+========================= */
 .container-img-pricipal {
   background-image: url("dist/Fotos/3.JPG");
-  background-size: cover; /* ou "contain", dependendo do efeito */
-  background-position: center top; /* Aqui você escolhe a parte da imagem */
+  background-size: cover;
+  background-position: center top;
   background-repeat: no-repeat;
   width: 100%;
-  height: 2000px;
+  height: 1200px;
 }
 
+/* =========================
+   MAQUETE COM FUNDO E FILTRO
+========================= */
 .section-maquete {
   position: relative;
   background-image: url(./dist/Fotos/11.JPG);
@@ -269,8 +343,9 @@ button:hover {
   background-position: center center;
   background-repeat: no-repeat;
   width: 100%;
-  z-index: 1; /* base para conteúdo */
+  z-index: 1;
 }
+
 .section-maquete::before {
   content: "";
   position: absolute;
@@ -279,19 +354,22 @@ button:hover {
   background-size: inherit;
   background-position: inherit;
   background-repeat: inherit;
-  filter: brightness(0.4) blur(1px); /* ajuste conforme o efeito desejado */
-  z-index: 0; /* fica atrás do conteúdo */
+  filter: brightness(0.4) blur(1px);
+  z-index: 0;
 }
+
 .section-maquete .container {
   position: relative;
   z-index: 1;
 }
+
 .back-text {
   background-color: #1c1c1c;
   font-weight: 600;
   border-radius: 8px;
   padding: 10px;
 }
+
 .section-maquete h2 {
   font-size: 2.2rem;
   color: #222;
@@ -316,10 +394,10 @@ button:hover {
 }
 
 .section-maquete ul li::before {
-  content: "•";
+  content: "\2022";
   position: absolute;
   left: 0;
-  color: #ffc857; /* azul elegante para bullet */
+  color: #ffc857;
   font-size: 1.3rem;
   line-height: 1;
 }
@@ -329,104 +407,73 @@ button:hover {
   color: #f4f7f5;
 }
 
-.card-quem-somos {
-  display: flex;
-  max-width: 800px; /* limita a largura */
-  width: 100%;
-  margin: 0 auto; /* garante centralização mesmo fora do flex */
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  margin-bottom: 20px;
-  height: 100%;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+/* =========================
+   WHATSAPP FLUTUANTE
+========================= */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 200px;
+  right: 20px;
+  z-index: 999;
+  cursor: pointer;
   transition: transform 0.3s ease;
 }
-.card-alinhado-esquerda {
-  text-align: left;
+
+.whatsapp-float img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
-.card-alinhado-esquerda h4 {
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+.footer {
+  background: #000;
   text-align: center;
+  padding: 20px;
 }
 
-.title {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 40px;
-}
-#quem-somos .row.g-4 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* =========================
+   LOGO
+========================= */
+.logo-img {
+  max-width: 200px;
 }
 
-.card-quem-somos:hover {
-  transform: translateY(-5px);
-}
-
-.card-quem-somos h4 {
-  font-size: 1.5rem;
-  font-weight: 700;
+.logo-img-footer {
+  max-width: 200px;
   margin-bottom: 20px;
 }
 
-.card-quem-somos p,
-.card-quem-somos li {
-  font-size: 1rem;
-  line-height: 1.6;
-}
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 10px;
+  }
 
-.card-quem-somos ul {
-  padding-left: 1rem;
-  margin: 0;
-}
-.card-quem-somos ul li::marker {
-  color: #ffc857;
+  .card-quem-somos,
+  .card-custom {
+    max-width: 100%;
+  }
 
-  font-size: 1.2rem;
-}
-.card-quem-somos p,
-.card-quem-somos ul {
-  max-width: 100%;
-  margin: 0 auto;
-}
+  .img-galeria {
+    max-width: 100%;
+  }
 
-/* Section da galeria */
-#galeria.section {
-  padding: 60px 0;
-}
+  .container-contact {
+    flex-direction: column;
+    align-items: center;
+  }
 
-#galeria h3 {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 40px;
-}
-
-/* Card da imagem */
-.card-custom {
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Ainda pode ter leve animação de sombra */
-.card-custom:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* Imagem sem zoom, mas com cantos arredondados */
-.img-galeria {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-  object-fit: cover;
+  .nav {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
