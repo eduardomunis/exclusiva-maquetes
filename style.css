@@ -14,6 +14,7 @@ body {
   background: #1c1c1c;
   color: #f4f7f5;
   line-height: 1.6;
+  overflow-x: hidden; /* Evita scroll lateral */
 }
 
 /* =========================
@@ -474,5 +475,47 @@ button:hover {
   .nav {
     flex-direction: column;
     gap: 10px;
+  }
+}
+
+/* === DROPDOWN RESPONSIVO PARA TABLETS === */
+@media (max-width: 991px) {
+  .nav {
+    display: none;
+    flex-direction: column;
+    background-color: #1c1c1c;
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 999;
+  }
+
+  .nav.show {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: #ffc857;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 992px) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    background: none;
+    padding: 0;
   }
 }

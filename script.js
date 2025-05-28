@@ -15,3 +15,12 @@ document.getElementById("form").addEventListener("submit", function (e) {
   alert("Mensagem enviada com sucesso!");
   this.reset();
 });
+
+const toggle = document.querySelector(".nav-toggle");
+const nav = document.querySelector(".nav");
+
+document.addEventListener("click", function (e) {
+  if (!nav.contains(e.target) && e.target !== toggle) {
+    nav.classList.remove("show");
+  }
+});
