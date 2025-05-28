@@ -263,11 +263,35 @@ button:hover {
 }
 
 .section-maquete {
-  background-color: #474350; /* fundo suave e profissional */
-  padding: 60px 0;
-  color: #f4f7f5;
+  position: relative;
+  background-image: url(./dist/Fotos/11.JPG);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  z-index: 1; /* base para conteúdo */
 }
-
+.section-maquete::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: inherit;
+  background-size: inherit;
+  background-position: inherit;
+  background-repeat: inherit;
+  filter: brightness(0.4) blur(1px); /* ajuste conforme o efeito desejado */
+  z-index: 0; /* fica atrás do conteúdo */
+}
+.section-maquete .container {
+  position: relative;
+  z-index: 1;
+}
+.back-text {
+  background-color: #1c1c1c;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px;
+}
 .section-maquete h2 {
   font-size: 2.2rem;
   color: #222;
