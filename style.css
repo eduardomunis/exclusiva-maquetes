@@ -23,7 +23,6 @@ body {
 .container {
   max-width: 1200px;
   margin: auto;
-  padding: 20px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -81,24 +80,6 @@ body {
   .nav-link {
     width: 100%;
   }
-}
-
-/* =========================
-   SEÇÃO HERO
-========================= */
-.hero {
-  height: 70vh;
-  background: url("https://via.placeholder.com/1200x500") center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.hero h2 {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 20px;
-  border-radius: 8px;
 }
 
 /* =========================
@@ -460,7 +441,7 @@ button:hover {
    LOGO
 ========================= */
 .logo-img {
-  max-width: 200px;
+  max-width: 120px;
 }
 
 .logo-img-footer {
