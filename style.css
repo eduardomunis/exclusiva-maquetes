@@ -442,6 +442,7 @@ button:hover {
 ========================= */
 .logo-img {
   max-width: 120px;
+  padding-left: 20px;
 }
 
 .logo-img-footer {
