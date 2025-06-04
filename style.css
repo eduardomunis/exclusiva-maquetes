@@ -517,3 +517,98 @@ button:hover {
     padding: 0;
   }
 }
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  .title,
+  #galeria h3,
+  .section-maquete h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  .header {
+    padding: 10px 0;
+  }
+
+  .logo-img {
+    max-width: 90px;
+    padding-left: 10px;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .card-quem-somos {
+    padding: 20px;
+  }
+
+  .card-quem-somos h4 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  .card-quem-somos p,
+  .card-quem-somos li {
+    font-size: 0.9rem;
+  }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .img-galeria {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .container-img-pricipal {
+    height: 500px;
+  }
+
+  .section {
+    padding: 40px 10px;
+  }
+
+  .form,
+  form {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  input,
+  textarea {
+    font-size: 14px;
+  }
+
+  button,
+  .custom-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .section-maquete p,
+  .section-maquete ul li {
+    font-size: 0.95rem;
+  }
+
+  .logo-img-footer {
+    max-width: 150px;
+  }
+
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    bottom: 120px;
+  }
+}
