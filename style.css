@@ -212,6 +212,11 @@ body {
   text-decoration: none;
   color: #f4f7f5;
 }
+
+a[href^="tel"] {
+  color: white !important;
+  text-decoration: none;
+}
 .side-rigth h5 {
   text-align: center;
   margin-bottom: 20px;
