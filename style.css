@@ -209,6 +209,7 @@ body {
   flex-direction: column;
 }
 .side-left p {
+  text-decoration: none;
   color: #f4f7f5;
 }
 .side-rigth h5 {
