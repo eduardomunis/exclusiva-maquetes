@@ -1,5 +1,19 @@
 {
   "dependencies": {
-    "bootstrap": "^5.3.6"
-  }
+    "body-parser": "^2.2.0",
+    "bootstrap": "^5.3.6",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "nodemailer": "^7.0.3"
+  },
+  "name": "exclusiva-maquetes",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

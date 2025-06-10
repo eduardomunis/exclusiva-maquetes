@@ -1,0 +1,625 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+/* =========================
+   RESET E CONFIGURAÇÕES GERAIS
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background: #1c1c1c;
+  color: #f4f7f5;
+  line-height: 1.6;
+  overflow-x: hidden; /* Evita scroll lateral */
+}
+
+/* =========================
+   CONTAINER GERAL
+========================= */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   CABEÇALHO E NAVEGAÇÃO
+========================= */
+.header {
+  background: #1c1c1c;
+  border-bottom: 1px solid #444;
+  padding: 20px 0;
+}
+
+.logo {
+  color: #ffc857;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar-toggler {
+  background-color: #f4f7f5;
+}
+.navbar {
+  background-color: #1c1c1c;
+}
+.navbar-nav .nav-link {
+  color: #f4f7f5;
+  padding: 10px;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+.navbar-nav .nav-link:hover {
+  background-color: #ffc857;
+  color: #1c1c1c;
+}
+.navbar-toggler {
+  border-color: #ffc857;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #1c1c1c;
+    z-index: 999;
+    padding: 20px;
+  }
+  .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-link {
+    width: 100%;
+  }
+}
+
+/* =========================
+   TÍTULOS
+========================= */
+.title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+/* =========================
+   QUEM SOMOS
+========================= */
+.resume-quem-somos {
+  background-color: #474350;
+  color: #f4f7f5;
+  padding: 40px;
+}
+
+#missao .row.g-4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-quem-somos {
+  display: flex;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto 20px auto;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  border: 1px solid #f4f7f5;
+}
+
+.card-quem-somos:hover {
+  transform: translateY(-5px);
+}
+
+.card-quem-somos h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.card-quem-somos p,
+.card-quem-somos li {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.card-quem-somos ul {
+  padding-left: 1rem;
+  margin: 0 auto;
+}
+
+.card-quem-somos ul li::marker {
+  color: #ffc857;
+  font-size: 1.2rem;
+}
+
+.card-quem-somos p,
+.card-quem-somos ul {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.card-alinhado-esquerda {
+  text-align: left;
+}
+
+.card-alinhado-esquerda h4 {
+  text-align: center;
+}
+
+/* =========================
+   SEÇÃO SERVIÇOS
+========================= */
+.section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.container-service {
+  display: flex;
+  justify-content: center;
+  background-color: #474350;
+  flex-wrap: wrap;
+}
+
+.title-service {
+  display: flex;
+  justify-content: center;
+}
+
+.service-icon {
+  width: 64px;
+  height: 64px;
+  filter: brightness(0) invert(1);
+  margin: 10px;
+  transition: transform 0.3s ease;
+}
+
+.service-icon:hover {
+  transform: scale(1.1);
+}
+
+/* =========================
+   CONTATO
+========================= */
+.container-contact {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.side-left {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.side-left p {
+  text-decoration: none;
+  color: #f4f7f5;
+}
+
+a[href^="tel"] {
+  color: white !important;
+  text-decoration: none;
+}
+.side-rigth h5 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contact-section {
+  background-color: #474350;
+  color: #f4f7f5;
+}
+
+.contact-section i {
+  margin-right: 8px;
+  color: #c7a789;
+}
+
+.contact-section .btn {
+  border-radius: 0;
+  letter-spacing: 1px;
+}
+
+/* =========================
+   FORMULÁRIO
+========================= */
+form {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input,
+textarea {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+button {
+  padding: 12px;
+  border: none;
+  background: #c4b06a;
+  color: #690e0e;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e6b800;
+}
+
+.custom-input {
+  background-color: #fff;
+  color: #000;
+  border-radius: 4px;
+  padding: 10px;
+  border: none;
+}
+
+.custom-btn {
+  background: #ffc857;
+  color: #000;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+}
+
+.custom-btn:hover {
+  background: #ffc857;
+}
+
+/* =========================
+   GALERIA
+========================= */
+#galeria.section {
+  padding: 60px 20px;
+}
+
+#galeria h3 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.img-galeria {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-custom {
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   IMAGEM PRINCIPAL
+========================= */
+.container-img-pricipal {
+  background-image: url("dist/Fotos/3.JPG");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 1200px;
+}
+
+/* =========================
+   MAQUETE COM FUNDO E FILTRO
+========================= */
+.section-maquete {
+  position: relative;
+  background-image: url(./dist/Fotos/11.JPG);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  z-index: 1;
+}
+
+.section-maquete::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: inherit;
+  background-size: inherit;
+  background-position: inherit;
+  background-repeat: inherit;
+  filter: brightness(0.4) blur(1px);
+  z-index: 0;
+}
+.backdrop-box {
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 40px;
+  border-radius: 12px;
+  color: #f4f7f5;
+  line-height: 1.8;
+}
+
+.section-maquete .container {
+  position: relative;
+  z-index: 1;
+}
+
+.back-text {
+  background-color: #1c1c1c;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.section-maquete h2 {
+  font-size: 2.2rem;
+  color: #222;
+  margin-bottom: 30px;
+}
+
+.section-maquete p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.section-maquete ul {
+  padding-left: 1rem;
+  margin-bottom: 20px;
+}
+
+.section-maquete ul li {
+  margin-bottom: 15px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.section-maquete ul li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0;
+  color: #ffc857;
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.section-maquete .fw-bold {
+  font-weight: 600;
+  color: #f4f7f5;
+}
+
+/* =========================
+   WHATSAPP FLUTUANTE
+========================= */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 200px;
+  right: 20px;
+  z-index: 999;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+.footer {
+  background: #000;
+  text-align: center;
+  padding: 20px;
+}
+
+/* =========================
+   LOGO
+========================= */
+.logo-img {
+  max-width: 150px;
+  padding-left: 20px;
+}
+
+.logo-img-footer {
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .card-quem-somos,
+  .card-custom {
+    max-width: 100%;
+  }
+
+  .img-galeria {
+    max-width: 100%;
+  }
+
+  .container-contact {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.hidden-img {
+  display: none;
+}
+
+/* === DROPDOWN RESPONSIVO PARA TABLETS === */
+@media (max-width: 991px) {
+  .nav {
+    display: none;
+    flex-direction: column;
+    background-color: #1c1c1c;
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 999;
+  }
+
+  .nav.show {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: #ffc857;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 992px) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    background: none;
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  .title,
+  #galeria h3,
+  .section-maquete h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  .header {
+    padding: 10px 0;
+  }
+
+  .logo-img {
+    max-width: 90px;
+    padding-left: 10px;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .card-quem-somos {
+    padding: 20px;
+  }
+
+  .card-quem-somos h4 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  .card-quem-somos p,
+  .card-quem-somos li {
+    font-size: 0.9rem;
+  }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .img-galeria {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .container-img-pricipal {
+    height: 500px;
+  }
+
+  .section {
+    padding: 40px 10px;
+  }
+
+  .form,
+  form {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  input,
+  textarea {
+    font-size: 14px;
+  }
+
+  button,
+  .custom-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .section-maquete p,
+  .section-maquete ul li {
+    font-size: 0.95rem;
+  }
+
+  .logo-img-footer {
+    max-width: 150px;
+  }
+
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    bottom: 120px;
+  }
+}
