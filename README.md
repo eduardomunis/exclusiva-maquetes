@@ -9,7 +9,10 @@ Projeto institucional para apresentar os serviços da Exclusiva Maquetes.
 - Bootstrap 5
 
 ## Como visualizar
-Abra o arquivo `index.html` no navegador.
+1. Instale as dependências com `npm install`.
+2. Copie o arquivo `.env.example` para `.env` e preencha suas informações de e-mail.
+3. Inicie o servidor com `npm start`.
+4. Acesse `http://localhost:3000` no navegador.
 
 ## Autor
 [Eduardo Munis](https://github.com/eduardomunis)
