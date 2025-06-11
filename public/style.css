@@ -292,12 +292,9 @@ button:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.side-rigth form {
   width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
+  max-width: 400px; /* controla o tamanho do formulário */
+  margin: 0 auto; /* centraliza dentro da coluna */
 }
 /* =========================
    GALERIA
