@@ -1,49 +1,31 @@
+const { Resend } = require("resend");
 const express = require("express");
-const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
-require("dotenv").config();
 
 const app = express();
-const PORT = 3000;
+const resend = new Resend("SUA_API_KEY_AQUI");
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
 app.post("/enviar-email", async (req, res) => {
   const { nome, email, mensagem } = req.body;
 
-  if (!nome || !email || !mensagem) {
-    return res
-      .status(400)
-      .json({ sucesso: false, erro: "Campos obrigatórios não preenchidos" });
-  }
-
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
   try {
-    await transporter.sendMail({
-      from: `"${nome}" <${email}>`,
-      to: process.env.EMAIL_DESTINO,
+    const data = await resend.emails.send({
+      from: "contato@seudominio.com", // ou use domínio do resend
+      to: "emaildestino@empresa.com",
       subject: "Mensagem do site",
-      text: mensagem,
+      text: `Nome: ${nome}\nEmail: ${email}\nMensagem:\n${mensagem}`,
     });
 
-    return res.status(200).json({ sucesso: true });
+    res.status(200).json({ sucesso: true, data });
   } catch (error) {
-    console.error("Erro ao enviar e-mail:", error);
-    return res
-      .status(500)
-      .json({ sucesso: false, erro: "Falha no envio do e-mail" });
+    console.error("Erro ao enviar:", error);
+    res.status(500).json({ sucesso: false, erro: error.message });
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+app.listen(3000, () => {
+  console.log("Servidor rodando em http://localhost:3000");
 });
