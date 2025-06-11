@@ -61,9 +61,16 @@ document
     try {
       const response = await fetch("/enviar-email", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(formData),
       });
+
+      const contentType = response.headers.get("Content-Type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Resposta inesperada do servidor");
+      }
 
       const resultado = await response.json();
       if (resultado.sucesso) {
