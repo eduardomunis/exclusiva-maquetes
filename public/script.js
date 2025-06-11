@@ -47,35 +47,29 @@ document.getElementById("mostrarMais").addEventListener("click", function () {
   }
 });
 
-document
-  .getElementById("formContato")
-  .addEventListener("submit", async function (e) {
-    e.preventDefault();
-
-    const nome = document.getElementById("nome").value;
-    const email = document.getElementById("email").value;
-    const mensagem = document.getElementById("mensagem").value;
-
-    const dados = { nome, email, mensagem };
-
-    try {
-      const resposta = await fetch("/enviar-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dados),
-      });
-
-      const resultado = await resposta.json();
-
-      if (resultado.sucesso) {
-        alert("Mensagem enviada com sucesso!");
-        this.reset();
-      } else {
-        alert("Erro ao enviar: " + resultado.erro);
-      }
-    } catch (err) {
-      alert("Erro ao enviar: " + err.message);
-    }
+try {
+  const resposta = await fetch("/enviar-email", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dados),
   });
+
+  const contentType = resposta.headers.get("Content-Type");
+  if (!contentType || !contentType.includes("application/json")) {
+    const texto = await resposta.text();
+    throw new Error("Resposta inesperada: " + texto);
+  }
+
+  const resultado = await resposta.json();
+
+  if (resultado.sucesso) {
+    alert("Mensagem enviada com sucesso!");
+    this.reset();
+  } else {
+    alert("Erro ao enviar: " + resultado.erro);
+  }
+} catch (err) {
+  alert("Erro ao enviar: " + err.message);
+}
