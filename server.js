@@ -1,5 +1,5 @@
 const express = require("express");
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 
@@ -10,6 +10,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 app.post("/enviar-email", async (req, res) => {
   const { nome, email, mensagem } = req.body;
 
@@ -19,20 +21,13 @@ app.post("/enviar-email", async (req, res) => {
       .json({ sucesso: false, erro: "Campos obrigatórios não preenchidos" });
   }
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
   try {
-    await transporter.sendMail({
-      from: `"${nome}" <${email}>`,
+    await resend.emails.send({
+      from: process.env.RESEND_FROM,
       to: process.env.EMAIL_DESTINO,
       subject: "Mensagem do site",
-      text: mensagem,
+      text: `${mensagem}\n\nNome: ${nome}\nEmail: ${email}`,
+      reply_to: email,
     });
 
     return res.status(200).json({ sucesso: true });
