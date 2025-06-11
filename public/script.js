@@ -52,27 +52,23 @@ document
   .addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const formData = {
-      nome: this.nome.value,
-      email: this.email.value,
-      mensagem: this.mensagem.value,
-    };
+    const nome = document.getElementById("nome").value;
+    const email = document.getElementById("email").value;
+    const mensagem = document.getElementById("mensagem").value;
+
+    const dados = { nome, email, mensagem };
 
     try {
-      const response = await fetch("/enviar-email", {
+      const resposta = await fetch("/enviar-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dados),
       });
 
-      const contentType = response.headers.get("Content-Type");
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new Error("Resposta inesperada do servidor");
-      }
+      const resultado = await resposta.json();
 
-      const resultado = await response.json();
       if (resultado.sucesso) {
         alert("Mensagem enviada com sucesso!");
         this.reset();
@@ -80,6 +76,6 @@ document
         alert("Erro ao enviar: " + resultado.erro);
       }
     } catch (err) {
-      alert("Erro de conexão: " + err.message);
+      alert("Erro ao enviar: " + err.message);
     }
   });
