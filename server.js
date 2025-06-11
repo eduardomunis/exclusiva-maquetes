@@ -34,6 +34,8 @@ app.post("/enviar-email", async (req, res) => {
   }
 });
 
+app.use("/node_modules", express.static(__dirname + "/node_modules"));
+
 app.listen(3000, () => {
   console.log("Servidor rodando em http://localhost:3000");
 });
