@@ -678,22 +678,14 @@
           </div>
 
           <!-- Formulário de contato -->
+
           <div class="col-md-6 side-rigth">
-            <h5 class="fw-bold">Fale conosco:</h5>
+            <h5 class="fw-bold text-center">Fale conosco:</h5>
             <form id="formContato">
-              <div class="mb-3">
-                <label for="nome" class="form-label">Nome:</label>
-                <input type="text" class="form-control" id="nome" name="nome" required />
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">E-mail:</label>
-                <input type="email" class="form-control" id="email" name="email" required />
-              </div>
-              <div class="mb-3">
-                <label for="mensagem" class="form-label">Mensagem:</label>
-                <textarea class="form-control" id="mensagem" name="mensagem" rows="3" required></textarea>
-              </div>
-              <button type="submit" class="btn custom-btn px-4">ENVIAR</button>
+              <input type="text" name="nome" id="nome" class="custom-input" placeholder="Seu nome" required />
+              <input type="email" name="email" id="email" class="custom-input" placeholder="Seu e-mail" required />
+              <textarea name="mensagem" id="mensagem" class="custom-input" placeholder="Sua mensagem" rows="4" required></textarea>
+              <button type="submit" class="custom-btn">Enviar</button>
             </form>
           </div>
     </main>
