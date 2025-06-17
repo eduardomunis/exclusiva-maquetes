@@ -50,19 +50,38 @@ document.getElementById("mostrarMais").addEventListener("click", function () {
 // ======================
 // Função para envio
 // ======================
-const response = await fetch('/api/enviar-email', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({ nome, email, mensagem }),
+document.getElementById('formContato').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const nome = e.target.nome.value.trim();
+  const email = e.target.email.value.trim();
+  const mensagem = e.target.mensagem.value.trim();
+
+  if (!nome || !email || !mensagem) {
+    alert('Por favor, preencha todos os campos.');
+    return;
+  }
+
+  try {
+    const response = await fetch('/api/enviar-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ nome, email, mensagem }),
+    });
+
+    const data = await response.json();
+
+    const resultadoDiv = document.getElementById('resultado');
+
+    if (data.sucesso) {
+      resultadoDiv.textContent = 'Mensagem enviada com sucesso!';
+      e.target.reset();
+    } else {
+      resultadoDiv.textContent = 'Erro ao enviar a mensagem: ' + (data.erro || 'Erro desconhecido');
+    }
+  } catch (error) {
+    alert('Erro ao enviar: ' + error.message);
+  }
 });
-
-const contentType = response.headers.get("content-type");
-if (!contentType || !contentType.includes("application/json")) {
-  const textoErro = await response.text();
-  console.error('Resposta não é JSON:', textoErro);
-  throw new Error('Resposta inválida do servidor');
-}
-
-const data = await response.json();
