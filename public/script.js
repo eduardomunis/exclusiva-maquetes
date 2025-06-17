@@ -63,7 +63,7 @@ document.getElementById('formContato').addEventListener('submit', async function
   }
 
   try {
-    const response = await fetch('/api/enviar-email', {
+    const response = await fetch('./api/enviar-email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
