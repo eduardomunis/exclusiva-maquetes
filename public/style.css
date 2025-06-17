@@ -194,6 +194,10 @@ body {
   transform: scale(1.1);
 }
 
+.space-objects {
+  padding-top: 3rem;
+  margin-bottom: 12rem;
+}
 /* =========================
    CONTATO
 ========================= */
