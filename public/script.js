@@ -63,7 +63,7 @@ document.getElementById('formContato').addEventListener('submit', async function
   }
 
   try {
-    const response = await fetch('/enviar-email', {
+    const response = await fetch('/api/enviar-email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -85,4 +85,3 @@ document.getElementById('formContato').addEventListener('submit', async function
     alert('Erro ao enviar: ' + error.message);
   }
 });
-
