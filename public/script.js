@@ -12,21 +12,7 @@ document.querySelectorAll("a[href^='#']").forEach((link) => {
   });
 });
 
-// ======================
-// Simulação de envio de formulário simples
-// ======================
-const form = document.getElementById("form");
-if (form) {
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    alert("Mensagem enviada com sucesso!");
-    this.reset();
 
-    // Se quiser usar o envio real com `fetch`, chame aqui:
-    // const dados = { nome: 'teste', email: 'exemplo@email.com' }; // Exemplo
-    // enviarEmail(dados);
-  });
-}
 
 // ======================
 // Inicialização do GLightbox
