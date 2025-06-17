@@ -736,11 +736,33 @@
           <div class="col-md-6 side-rigth">
             <h5 class="fw-bold text-center">Fale conosco:</h5>
             <form id="formContato">
-              <input type="text" name="nome" id="nome" placeholder="Seu nome" required />
-              <input type="email" name="email" id="email" placeholder="Seu e-mail" required />
-              <textarea name="mensagem" id="mensagem" placeholder="Sua mensagem" required></textarea>
-              <button type="submit">Enviar</button>
+              <input
+                type="text"
+                name="nome"
+                id="nome"
+                class="custom-input"
+                placeholder="Seu nome"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                id="email"
+                class="custom-input"
+                placeholder="Seu e-mail"
+                required
+              />
+              <textarea
+                name="mensagem"
+                id="mensagem"
+                class="custom-input"
+                placeholder="Sua mensagem"
+                rows="4"
+                required
+              ></textarea>
+              <button type="submit" class="custom-btn">Enviar</button>
             </form>
+            
             <div id="resultado"></div>
           </div>
         </section>
