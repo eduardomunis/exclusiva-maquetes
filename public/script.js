@@ -50,7 +50,7 @@ document.getElementById("mostrarMais").addEventListener("click", function () {
 // ======================
 // Função para envio
 // ======================
-document.getElementById('formContato').addEventListener('submit', async function (e) {
+document.getElementById('formContato').addEventListener('submit', async function(e) {
   e.preventDefault();
 
   const nome = e.target.nome.value.trim();
@@ -63,25 +63,31 @@ document.getElementById('formContato').addEventListener('submit', async function
   }
 
   try {
-    const response = await fetch('./api/enviar-email', {
+    const response = await fetch('/api/enviar-email', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ nome, email, mensagem }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nome, email, mensagem })
     });
 
-    const data = await response.json();
+    const ct = response.headers.get('content-type');
+    if (!ct || !ct.includes('application/json')) {
+      const text = await response.text();
+      console.error('Resposta não é JSON:', text);
+      alert('Erro inesperado. Veja o console para mais detalhes.');
+      return;
+    }
 
+    const data = await response.json();
     const resultadoDiv = document.getElementById('resultado');
 
     if (data.sucesso) {
       resultadoDiv.textContent = 'Mensagem enviada com sucesso!';
       e.target.reset();
     } else {
-      resultadoDiv.textContent = 'Erro ao enviar a mensagem: ' + (data.erro || 'Erro desconhecido');
+      resultadoDiv.textContent = 'Erro ao enviar: ' + (data.erro || 'Erro desconhecido');
     }
-  } catch (error) {
-    alert('Erro ao enviar: ' + error.message);
+  } catch (err) {
+    console.error(err);
+    alert('Erro ao enviar: ' + err.message);
   }
 });
