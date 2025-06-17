@@ -62,27 +62,41 @@ document.getElementById("mostrarMais").addEventListener("click", function () {
 });
 
 // ======================
-// Função para envio real com fetch (corrigido com async/await)
+// Função para envio
 // ======================
-document.getElementById("formulario").addEventListener("submit", async (e) => {
+document.getElementById('formContato').addEventListener('submit', async function (e) {
   e.preventDefault();
-  const form = e.target;
-  const body = {
-    nome: form.nome.value,
-    email: form.email.value,
-    mensagem: form.mensagem.value,
-  };
-  const res = await fetch("/api/send-email", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  const data = await res.json();
-  if (data.success) {
-    alert("Mensagem enviada com sucesso!");
-    form.reset();
-  } else {
-    alert("Erro ao enviar mensagem.");
-    console.error(data.error);
+
+  const nome = e.target.nome.value.trim();
+  const email = e.target.email.value.trim();
+  const mensagem = e.target.mensagem.value.trim();
+
+  if (!nome || !email || !mensagem) {
+    alert('Por favor, preencha todos os campos.');
+    return;
+  }
+
+  try {
+    const response = await fetch('/enviar-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ nome, email, mensagem }),
+    });
+
+    const data = await response.json();
+
+    const resultadoDiv = document.getElementById('resultado');
+
+    if (data.sucesso) {
+      resultadoDiv.textContent = 'Mensagem enviada com sucesso!';
+      e.target.reset();
+    } else {
+      resultadoDiv.textContent = 'Erro ao enviar a mensagem: ' + (data.erro || 'Erro desconhecido');
+    }
+  } catch (error) {
+    alert('Erro ao enviar: ' + error.message);
   }
 });
+

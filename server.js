@@ -1,14 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const { Resend } = require("resend");
+const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const app = express();
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
+// Rota para envio de e-mail
 app.post("/enviar-email", async (req, res) => {
   const { nome, email, mensagem } = req.body;
 
@@ -18,16 +18,31 @@ app.post("/enviar-email", async (req, res) => {
       .json({ sucesso: false, erro: "Campos obrigatórios não preenchidos" });
   }
 
+  const transporter = nodemailer.createTransport({
+    host: "smtp.titan.email",
+    port: 587,
+    secure: false, // true se usar porta 465
+    auth: {
+      user: process.env.EMAIL_TITAN,
+      pass: process.env.EMAIL_TITAN_PASSWORD,
+    },
+  });
+
   try {
-    const data = await resend.emails.send({
-      from: process.env.RESEND_FROM,
-      to: process.env.EMAIL_DESTINO,
+    await transporter.sendMail({
+      from: `"${nome}" <${process.env.EMAIL_TITAN}>`,
+      to: process.env.EMAIL_DESTINO || process.env.EMAIL_TITAN,
       subject: "Mensagem do site",
-      text: `${mensagem}\n\nNome: ${nome}\nEmail: ${email}`,
-      reply_to: email,
+      html: `
+        <p><strong>Nome:</strong> ${nome}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Mensagem:</strong></p>
+        <p>${mensagem}</p>
+      `,
+      replyTo: email,
     });
 
-    res.status(200).json({ sucesso: true, data });
+    res.status(200).json({ sucesso: true });
   } catch (error) {
     console.error("Erro ao enviar:", error);
     res.status(500).json({ sucesso: false, erro: error.message });
