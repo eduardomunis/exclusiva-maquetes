@@ -64,31 +64,25 @@ document.getElementById("mostrarMais").addEventListener("click", function () {
 // ======================
 // Função para envio real com fetch (corrigido com async/await)
 // ======================
-async function enviarEmail(dados) {
-  try {
-    const resposta = await fetch("/enviar-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(dados),
-    });
-
-    const contentType = resposta.headers.get("Content-Type");
-    if (!contentType || !contentType.includes("application/json")) {
-      const texto = await resposta.text();
-      throw new Error("Resposta inesperada: " + texto);
-    }
-
-    const resultado = await resposta.json();
-
-    if (resultado.sucesso) {
-      alert("Mensagem enviada com sucesso!");
-      form.reset();
-    } else {
-      alert("Erro ao enviar: " + resultado.erro);
-    }
-  } catch (err) {
-    alert("Erro ao enviar: " + err.message);
+document.getElementById("formulario").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const body = {
+    nome: form.nome.value,
+    email: form.email.value,
+    mensagem: form.mensagem.value,
+  };
+  const res = await fetch("/api/send-email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const data = await res.json();
+  if (data.success) {
+    alert("Mensagem enviada com sucesso!");
+    form.reset();
+  } else {
+    alert("Erro ao enviar mensagem.");
+    console.error(data.error);
   }
-}
+});
