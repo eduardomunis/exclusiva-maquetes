@@ -26,19 +26,17 @@ module.exports = async (req, res) => {
   }
 
   const transporter = nodemailer.createTransport({
-    host: "smtp.titan.email",
-    port: 587,
-    secure: false,
+    service: "gmail",
     auth: {
-      user: process.env.EMAIL_TITAN, // Seu e-mail Titan Host
-      pass: process.env.EMAIL_TITAN_PASSWORD, // Sua senha Titan Host
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS,
     },
   });
 
   try {
     await transporter.sendMail({
-      from: `"${nome}" <${process.env.EMAIL_TITAN}>`,
-      to: process.env.EMAIL_DESTINO || process.env.EMAIL_TITAN, // Destinatário Titan Host
+      from: `"${nome}" <${process.env.GMAIL_USER}>`,
+      to: process.env.EMAIL_DESTINO, // Seu e-mail Titan Host
       subject: `Nova mensagem de ${nome} - Site Exclusiva Maquetes`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
