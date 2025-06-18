@@ -78,7 +78,7 @@ module.exports = async (req, res) => {
 
     return res.status(500).json({
       sucesso: false,
-      erro: "Erro interno do servidor ao enviar email",
+      erro: "Erro interno do servidor ao enviar mail",
       detalhes: error.message,
     });
   }
