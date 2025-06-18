@@ -1,7 +1,17 @@
 {
   "name": "exclusiva-maquetes",
   "version": "1.0.0",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
   "dependencies": {
-    "nodemailer": "^7.0.3"
+    "express": "^4.18.2",
+    "nodemailer": "^7.0.3",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
   }
 }
