@@ -1,8 +1,8 @@
-import { Resend } from "resend";
+const { Resend } = require("resend");
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   if (req.method !== "POST") {
     return res
       .status(405)
@@ -12,9 +12,10 @@ export default async function handler(req, res) {
   const { nome, email, mensagem } = req.body || {};
 
   if (!nome || !email || !mensagem) {
-    return res
-      .status(400)
-      .json({ sucesso: false, erro: "Campos obrigatórios não preenchidos." });
+    return res.status(400).json({
+      sucesso: false,
+      erro: "Campos obrigatórios não preenchidos.",
+    });
   }
 
   try {
@@ -27,14 +28,17 @@ export default async function handler(req, res) {
         <p><strong>Nome:</strong> ${nome}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Mensagem:</strong></p>
-        <p>${mensagem.replace(/\n/g, "<br>")}</p>
+        <p>${mensagem}</p>
       `,
       reply_to: email,
     });
 
-    return res.status(200).json({ sucesso: true, data: emailRes });
+    return res.status(200).json({ sucesso: true });
   } catch (error) {
-    console.error("Erro ao enviar e-mail:", error);
-    return res.status(500).json({ sucesso: false, erro: error.message });
+    console.error("Erro:", error);
+    return res.status(500).json({
+      sucesso: false,
+      erro: "Erro ao enviar email",
+    });
   }
-}
+};
