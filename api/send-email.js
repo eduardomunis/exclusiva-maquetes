@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
 
     const emailRes = await resend.emails.send({
       from: process.env.RESEND_FROM,
-      to: process.env.EMAIL_DESTINO,
+      to: "exclusiva.maquetes@exclusivamaquetes.com",
       subject: `Nova mensagem de ${nome} - Site Exclusiva Maquetes`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
