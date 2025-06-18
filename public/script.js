@@ -1,35 +1,32 @@
-// server.js
-const express = require("express");
-const path = require("path");
-require("dotenv").config();
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("formContato");
+  const resultado = document.getElementById("resultado");
 
-const app = express();
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-// Middlewares
-app.use(express.json());
-app.use(express.static("public"));
+    const nome = document.getElementById("nome").value;
+    const email = document.getElementById("email").value;
+    const mensagem = document.getElementById("mensagem").value;
 
-// Importar a função de envio de email
-const enviarEmail = require("./api/enviar-email.js");
+    try {
+      const response = await fetch("/enviar-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, email, mensagem }),
+      });
 
-// Rota da API
-app.post("/api/enviar-email", enviarEmail);
+      const data = await response.json();
 
-// Servir arquivos estáticos
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
-
-// Deve ser exatamente assim:
-fetch("/api/enviar-email", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({ nome, email, mensagem }),
+      if (data.sucesso) {
+        resultado.innerHTML =
+          "<span style='color:green'>Mensagem enviada com sucesso!</span>";
+        form.reset();
+      } else {
+        resultado.innerHTML = `<span style='color:red'>${data.erro || "Erro ao enviar."}</span>`;
+      }
+    } catch (err) {
+      resultado.innerHTML = "<span style='color:red'>Erro ao enviar.</span>";
+    }
+  });
 });
