@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (data.sucesso) {
         resultado.innerHTML =
-          "<span style='color:green'>Mensagem enviada com sucesso!</span>";
+          "<span style='color:white'>Mensagem enviada com sucesso!</span>";
         form.reset();
       } else {
         resultado.innerHTML = `<span style='color:red'>${data.erro || "Erro ao enviar."}</span>`;
