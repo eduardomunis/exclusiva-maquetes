@@ -1,93 +1,26 @@
-// ======================
-// Scroll suave para âncoras
-// ======================
-document.querySelectorAll("a[href^='#']").forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    const id = link.getAttribute("href");
-    const destino = document.querySelector(id);
-    if (destino) {
-      destino.scrollIntoView({ behavior: "smooth" });
-    }
-  });
+// server.js
+const express = require('express');
+const path = require('path');
+require('dotenv').config();
+
+const app = express();
+
+// Middlewares
+app.use(express.json());
+app.use(express.static('public'));
+
+// Importar a função de envio de email
+const enviarEmail = require('./api/enviar-email.js');
+
+// Rota da API
+app.post('/api/enviar-email', enviarEmail);
+
+// Servir arquivos estáticos
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-
-
-// ======================
-// Inicialização do GLightbox
-// ======================
-const lightbox = GLightbox({
-  selector: ".glightbox",
-});
-
-// ======================
-// Mostrar/Esconder imagens extras da galeria
-// ======================
-document.getElementById("mostrarMais").addEventListener("click", function () {
-  const imagens = document.querySelectorAll(".hidden-img");
-  let todasVisiveis = true;
-
-  imagens.forEach(function (el) {
-    if (el.style.display === "none" || el.style.display === "") {
-      todasVisiveis = false;
-    }
-  });
-
-  if (todasVisiveis) {
-    imagens.forEach(function (el) {
-      el.style.display = "none";
-    });
-    this.textContent = "Mostrar mais";
-  } else {
-    imagens.forEach(function (el) {
-      el.style.display = "block";
-    });
-    this.textContent = "Mostrar menos";
-  }
-});
-
-// ======================
-// Função para envio
-// ======================
-document.getElementById('formContato').addEventListener('submit', async function(e) {
-  e.preventDefault();
-
-  const nome = e.target.nome.value.trim();
-  const email = e.target.email.value.trim();
-  const mensagem = e.target.mensagem.value.trim();
-
-  if (!nome || !email || !mensagem) {
-    alert('Por favor, preencha todos os campos.');
-    return;
-  }
-
-  try {
-    const response = await fetch('/api/enviar-email', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nome, email, mensagem })
-    });
-
-    const ct = response.headers.get('content-type');
-    if (!ct || !ct.includes('application/json')) {
-      const text = await response.text();
-      console.error('Resposta não é JSON:', text);
-      alert('Erro inesperado. Veja o console para mais detalhes.');
-      return;
-    }
-
-    const data = await response.json();
-    const resultadoDiv = document.getElementById('resultado');
-
-    if (data.sucesso) {
-      resultadoDiv.textContent = 'Mensagem enviada com sucesso!';
-      e.target.reset();
-    } else {
-      resultadoDiv.textContent = 'Erro ao enviar: ' + (data.erro || 'Erro desconhecido');
-    }
-  } catch (err) {
-    console.error(err);
-    alert('Erro ao enviar: ' + err.message);
-  }
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });

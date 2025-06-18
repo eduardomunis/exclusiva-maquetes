@@ -1,4 +1,3 @@
-// /api/enviar-email.js
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -22,8 +21,14 @@ export default async function handler(req, res) {
     const emailRes = await resend.emails.send({
       from: process.env.RESEND_FROM,
       to: process.env.EMAIL_DESTINO,
-      subject: "Nova mensagem do site",
-      text: `${mensagem}\n\nNome: ${nome}\nEmail: ${email}`,
+      subject: `Nova mensagem de ${nome}`,
+      html: `
+        <h3>Nova mensagem do site</h3>
+        <p><strong>Nome:</strong> ${nome}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Mensagem:</strong></p>
+        <p>${mensagem.replace(/\n/g, "<br>")}</p>
+      `,
       reply_to: email,
     });
 
