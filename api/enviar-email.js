@@ -1,15 +1,10 @@
-// IMPORTANTE: Este arquivo substitui completamente qualquer código do Nodemailer
-const { Resend } = require("resend");
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+const nodemailer = require("nodemailer");
 
 module.exports = async (req, res) => {
-  // Configurar CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  // Responder OPTIONS para preflight CORS
   if (req.method === "OPTIONS") {
     res.status(200).end();
     return;
@@ -23,7 +18,6 @@ module.exports = async (req, res) => {
 
   const { nome, email, mensagem } = req.body || {};
 
-  // Validação dos campos
   if (!nome || !email || !mensagem) {
     return res.status(400).json({
       sucesso: false,
@@ -31,21 +25,20 @@ module.exports = async (req, res) => {
     });
   }
 
-  // Validação simples de email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return res.status(400).json({
-      sucesso: false,
-      erro: "Email inválido",
-    });
-  }
+  const transporter = nodemailer.createTransport({
+    host: "smtp.titan.email",
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.EMAIL_TITAN, // Seu e-mail Titan Host
+      pass: process.env.EMAIL_TITAN_PASSWORD, // Sua senha Titan Host
+    },
+  });
 
   try {
-    console.log("Tentando enviar email para:", process.env.EMAIL_DESTINO);
-
-    const emailRes = await resend.emails.send({
-      from: process.env.RESEND_FROM,
-      to: process.env.EMAIL_DESTINO,
+    await transporter.sendMail({
+      from: `"${nome}" <${process.env.EMAIL_TITAN}>`,
+      to: process.env.EMAIL_DESTINO || process.env.EMAIL_TITAN, // Destinatário Titan Host
       subject: `Nova mensagem de ${nome} - Site Exclusiva Maquetes`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -64,21 +57,17 @@ module.exports = async (req, res) => {
           </p>
         </div>
       `,
-      reply_to: email,
+      replyTo: email,
     });
-
-    console.log("Email enviado com sucesso:", emailRes.id);
 
     return res.status(200).json({
       sucesso: true,
       mensagem: "Email enviado com sucesso!",
     });
   } catch (error) {
-    console.error("Erro ao enviar email:", error);
-
     return res.status(500).json({
       sucesso: false,
-      erro: "Erro interno do servidor ao enviar mail",
+      erro: "Erro interno do servidor ao enviar email",
       detalhes: error.message,
     });
   }
