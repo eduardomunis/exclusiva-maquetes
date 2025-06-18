@@ -2,7 +2,6 @@
   "name": "exclusiva-maquetes",
   "version": "1.0.0",
   "dependencies": {
-    "nodemailer": "^7.0.3",
-    "resend": "^2.0.0"
+    "nodemailer": "^7.0.3"
   }
 }
