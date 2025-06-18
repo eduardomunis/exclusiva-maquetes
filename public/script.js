@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const mensagem = document.getElementById("mensagem").value;
 
     try {
-      const response = await fetch("public/api/enviar-email", {
+      const response = await fetch("/api/enviar-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nome, email, mensagem }),
