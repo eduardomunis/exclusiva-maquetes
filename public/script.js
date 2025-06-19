@@ -1,3 +1,50 @@
+// ======================
+// Scroll suave para âncoras
+// ======================
+document.querySelectorAll("a[href^='#']").forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const id = link.getAttribute("href");
+    const destino = document.querySelector(id);
+    if (destino) {
+      destino.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+});
+
+// ======================
+// Inicialização do GLightbox
+// ======================
+const lightbox = GLightbox({
+  selector: ".glightbox",
+});
+
+// ======================
+// Mostrar/Esconder imagens extras da galeria
+// ======================
+document.getElementById("mostrarMais").addEventListener("click", function () {
+  const imagens = document.querySelectorAll(".hidden-img");
+  let todasVisiveis = true;
+
+  imagens.forEach(function (el) {
+    if (el.style.display === "none" || el.style.display === "") {
+      todasVisiveis = false;
+    }
+  });
+
+  if (todasVisiveis) {
+    imagens.forEach(function (el) {
+      el.style.display = "none";
+    });
+    this.textContent = "Mostrar mais";
+  } else {
+    imagens.forEach(function (el) {
+      el.style.display = "block";
+    });
+    this.textContent = "Mostrar menos";
+  }
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("formContato");
   const resultado = document.getElementById("resultado");
@@ -31,26 +78,4 @@ document.addEventListener("DOMContentLoaded", function () {
       resultado.innerHTML = "<span style='color:red'>Erro ao enviar.</span>";
     }
   });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const btnMostrarMais = document.getElementById("mostrarMais");
-  const imagensOcultas = document.querySelectorAll(".hidden-img");
-
-  let mostrando = false;
-
-  if (btnMostrarMais && imagensOcultas.length > 0) {
-    btnMostrarMais.addEventListener("click", function () {
-      mostrando = !mostrando;
-      imagensOcultas.forEach(function (img) {
-        img.style.display = mostrando ? "block" : "none";
-      });
-      btnMostrarMais.textContent = mostrando ? "Mostrar menos" : "Mostrar mais";
-    });
-
-    // Inicialmente, esconde as imagens
-    imagensOcultas.forEach(function (img) {
-      img.style.display = "none";
-    });
-  }
 });
