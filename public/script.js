@@ -23,10 +23,34 @@ document.addEventListener("DOMContentLoaded", function () {
           "<span style='color:green'>Mensagem enviada com sucesso!</span>";
         form.reset();
       } else {
-        resultado.innerHTML = `<span style='color:red'>${data.erro || "Erro ao enviar."}</span>`;
+        resultado.innerHTML = `<span style='color:red'>${
+          data.erro || "Erro ao enviar."
+        }</span>`;
       }
     } catch (err) {
       resultado.innerHTML = "<span style='color:red'>Erro ao enviar.</span>";
     }
   });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const btnMostrarMais = document.getElementById("mostrarMais");
+  const imagensOcultas = document.querySelectorAll(".hidden-img");
+
+  let mostrando = false;
+
+  if (btnMostrarMais && imagensOcultas.length > 0) {
+    btnMostrarMais.addEventListener("click", function () {
+      mostrando = !mostrando;
+      imagensOcultas.forEach(function (img) {
+        img.style.display = mostrando ? "block" : "none";
+      });
+      btnMostrarMais.textContent = mostrando ? "Mostrar menos" : "Mostrar mais";
+    });
+
+    // Inicialmente, esconde as imagens
+    imagensOcultas.forEach(function (img) {
+      img.style.display = "none";
+    });
+  }
 });
